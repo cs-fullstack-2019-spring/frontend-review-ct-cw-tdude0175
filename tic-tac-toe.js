@@ -2,6 +2,31 @@ var  spaces = document.querySelectorAll("td");
 var currentPlayer = 1;
 var player = document.getElementById("player");
 var resetButton = document.querySelector("button");
+
+var numberOfRounds = parseInt(prompt("how many rounds do you want? 1-9"));
+var currentRound = 0;
+var player1wins = 0;
+var player2wins = 0;
+
+function roundcounter()
+{
+    if(currentRound === numberOfRounds)
+    {
+        if(player1wins > player2wins)
+        {
+            alert("player one wins");
+        }
+        else if(player1wins === player2wins)
+        {
+            alert("no winner");
+        }
+        else
+        {
+            alert("player two wins");
+        }
+    }
+
+}
 function reset()
 {
     for(i=0; i < spaces.length;i++)
@@ -9,9 +34,9 @@ function reset()
         spaces[i].innerHTML = "";
         currentPlayer = 1;
         player.textContent = ("Player " + currentPlayer);
+
     }
 }
-tietest = 0;
 function checkForWinner()
 {
         if ((spaces[0].innerText === spaces[1].innerText && spaces[1].innerText === spaces[2].innerText && spaces[2].innerText === "X")
@@ -23,8 +48,11 @@ function checkForWinner()
             || (spaces[0].innerText === spaces[4].innerText && spaces[4].innerText === spaces[8].innerText && spaces[8].innerText === "X")
             || (spaces[2].innerText === spaces[4].innerText && spaces[4].innerText === spaces[6].innerText && spaces[6].innerText === "X")) {
             alert("X wins");
+            player1wins+=1;
+            currentRound++;
             player.textContent = ("Player " + (currentPlayer - 1) + " wins");
             reset();
+            roundcounter();
         } else if ((spaces[0].innerText === spaces[1].innerText && spaces[1].innerText === spaces[2].innerText && spaces[2].innerText === "O")
             || (spaces[3].innerText === spaces[4].innerText && spaces[4].innerText === spaces[5].innerText && spaces[5].innerText === "O")
             || (spaces[6].innerText === spaces[7].innerText && spaces[7].innerText === spaces[8].innerText && spaces[8].innerText === "O")
@@ -34,8 +62,11 @@ function checkForWinner()
             || (spaces[0].innerText === spaces[4].innerText && spaces[4].innerText === spaces[8].innerText && spaces[8].innerText === "O")
             || (spaces[2].innerText === spaces[4].innerText && spaces[4].innerText === spaces[6].innerText && spaces[6].innerText === "O")) {
             alert("O wins");
+            player2wins+=1;
+            currentRound++;
             player.textContent = ("Player " + (currentPlayer + 1) + " wins");
             reset();
+            roundcounter();
         }
         else if(spaces[0].innerText !== "" &&spaces[1].innerText !== "" && spaces[2].innerText !== ""
             && spaces[3].innerText !== "" && spaces[4].innerText !== "" && spaces[5].innerText !== ""   //to much typing
@@ -43,6 +74,7 @@ function checkForWinner()
         {
                 alert("tie");
                 reset();
+                roundcounter();
         }
 // if you want to do challenges, build 2 more variables [number of rounds] and [current round]
 // add two more variables called [player1 wins] and [player two wins]
@@ -70,6 +102,7 @@ function clickedSquare(element)
         /*
         this code is a test of using a loop for the test
         array inside an array?
+
         // for (i = 0; i < spaces.length; i++)
         // {
         //     if(spaces[i+1] === null)
