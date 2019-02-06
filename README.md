@@ -1,3 +1,6 @@
+### POINTS: 2
+### Work on comments but I won't dock you this time as it is awesome you actually clipped some of the challenges!!!! No one else even attempted. Really Nice Job!
+
 # Frontend Review CT complete CW
 
 ### Exercise 1:
